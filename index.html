@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد تحلیل سوخت</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Tahoma;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 1.1rem;
+            margin: 0.5rem auto;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+        .box {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 900px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 95%;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        canvas {
+            margin: 40px auto;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>داشبورد تحلیل سوخت شناورها - زمستان ۱۴۰۳</h1>
+        <h2>تحلیل و مقایسه نوشتاری</h2>
+        <p>
+            طی بررسی‌های انجام‌شده در بازه زمانی دی تا اسفند ۱۴۰۳، روند مصرف، دریافت و انتقال سوخت در شناور «رهگشایان ۱» مورد تحلیل قرار گرفت.
+        </p>
+        <p>
+            در ماه <strong>دی</strong>، بیشترین میزان دریافت سوخت به ثبت رسیده (۲۴۳٬۰۰۰ لیتر)، در حالی که مصرف در حدود ۶۵٬۸۴۶ لیتر بوده است.
+            در <strong>بهمن</strong>، با وجود کاهش دریافت سوخت به ۱۹۶٬۳۴۴ لیتر، میزان انتقال به دیگر شناورها افزایش چشمگیری داشته و به ۲۸۸٬۵۰۰ لیتر رسیده است.
+            در <strong>اسفند</strong> نیز با کاهش موجودی اولیه، باز هم روند مصرف نسبتاً بالا و انتقال نزدیک به ۱۹٪ موجودی اولیه ثبت شده است.
+        </p>
+        <p>
+            در مجموع، طی این سه ماه، ۲۰۴٬۲۲۱ لیتر سوخت مصرف، ۵۸۴٬۳۴۴ لیتر دریافت و ۴۲۷٬۰۰۰ لیتر سوخت به سایر بخش‌ها منتقل شده است.
+            این آمارها نشان‌دهنده فعالیت پایدار و نقش تأمین‌کننده سوخت توسط این شناور است.
+        </p>
+
+    <canvas id="fuelTrendChart"></canvas>
+    <script>
+        const months = ["دی", "بهمن", "اسفند"];
+        const fuelTrendData = {
+            labels: months,
+            datasets: [
+                {
+                    label: "مصرف سوخت",
+                    data: [65846, 82815, 55560],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.3)',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: "دریافت سوخت",
+                    data: [243000, 196344, 145000],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.3)',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: "انتقال سوخت",
+                    data: [35500, 288500, 103000],
+                    borderColor: '#2980b9',
+                    backgroundColor: 'rgba(41, 128, 185, 0.3)',
+                    tension: 0.3,
+                    fill: true
+                }
+            ]
+        };
+
+        const configFuelTrend = {
+            type: 'line',
+            data: fuelTrendData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'نمودار روند ماهانه مصرف، دریافت و انتقال سوخت'
+                    },
+                    legend: { position: 'bottom' }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('fuelTrendChart'), configFuelTrend);
+    </script>
+
+<canvas id="fuelCompareBar"></canvas>
+<script>
+const fuelCompareData = {
+    labels: ["دی", "بهمن", "اسفند"],
+    datasets: [
+        {
+            label: "مصرف سوخت",
+            data: [65846, 82815, 55560],
+            backgroundColor: '#f39c12'
+        },
+        {
+            label: "دریافت سوخت",
+            data: [243000, 196344, 145000],
+            backgroundColor: '#27ae60'
+        },
+        {
+            label: "انتقال سوخت",
+            data: [35500, 288500, 103000],
+            backgroundColor: '#2980b9'
+        }
+    ]
+};
+const configFuelCompareBar = {
+    type: 'bar',
+    data: fuelCompareData,
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'نمودار میله‌ای مقایسه‌ای ماهانه مصرف، دریافت و انتقال سوخت'
+            },
+            legend: { position: 'bottom' }
+        }
+    }
+};
+new Chart(document.getElementById('fuelCompareBar'), configFuelCompareBar);
+</script>
+
+<h2>کارکرد موتور و بازده مصرف سوخت</h2>
+        <p>
+            در نمونه ثبت‌شده از اسفند (شیت پنجم)، جدول Running Hours حاوی اطلاعات دقیق عملکرد تجهیزات بوده است.
+            ژنراتورها، موتورهای اصلی و BOW THRUSTER همگی ثبت شده‌اند.
+            مجموع ساعات کارکرد ژنراتورها برابر با ۲۴ ساعت و مجموع مصرف آن‌ها ۴۵۰ لیتر بوده که راندمانی معادل <strong>۱۸.۷۵ لیتر در ساعت</strong> را نشان می‌دهد.
+            همچنین موتورهای اصلی با ۱۹ ساعت کارکرد، مصرفی حدود <strong>۲۲۸۰ لیتر</strong> داشته‌اند که راندمانی معادل <strong>۱۲۰ لیتر در ساعت</strong> را ثبت کرده‌اند.
+        </p>
+        <p>
+            بر اساس داده‌های استخراج‌شده از تمام شیت‌ها، تحلیل کلی راندمان تجهیزات در سه ماه اخیر نشان می‌دهد:
+        </p>
+        <ul style="text-align:right; max-width:800px; margin:0 auto;">
+            <li><strong>MAIN ENGINE #1 و #2</strong>: هرکدام با مجموع ۶۶۱.۵ ساعت کارکرد و مصرف ۷۹۳۸۰ لیتر، راندمانی معادل <strong>۱۲۰ لیتر در ساعت</strong> داشته‌اند.</li>
+            <li><strong>BOW THRUSTER 1&2</strong>: با مجموع ۲۳۸.۵ ساعت کارکرد و ۷۱۵۵ لیتر مصرف، راندمانی حدود <strong>۳۰ لیتر در ساعت</strong> ثبت کرده‌اند.</li>
+        </ul>
+    </div>
+
+    <canvas id="equipmentEfficiencyChart"></canvas>
+    <script>
+        const equipLabels = ["MAIN ENGINE #1", "MAIN ENGINE #2", "BOW THRUSTER 1&2"];
+        const efficiencyData = {
+            labels: equipLabels,
+            datasets: [{
+                label: 'راندمان (لیتر در ساعت)',
+                data: [120.0, 120.0, 30.0],
+                backgroundColor: ['#f39c12', '#3498db', '#27ae60']
+            }]
+        };
+
+        const configEfficiency = {
+            type: 'bar',
+            data: efficiencyData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'نمودار راندمان مصرف سوخت تجهیزات (۳ ماهه)'
+                    },
+                    legend: { display: false }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('equipmentEfficiencyChart'), configEfficiency);
+    </script>
+</body>
+</html>
