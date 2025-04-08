@@ -205,6 +205,59 @@ const efficiencyChart = new Chart(document.getElementById('efficiencyChart'), {
 });
 </script>
 
+
+<div class='container'>
+    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <canvas id='areaTrendChart'></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById('areaTrendChart'), {
+    type: 'line',
+    data: {
+        labels: ['دی', 'بهمن', 'اسفند'],
+        datasets: [
+            {
+                label: 'مصرف سوخت',
+                data: [65846.0, 82815.0, 55560.0],
+                borderColor: '#f39c12',
+                backgroundColor: 'rgba(243, 156, 18, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'دریافت سوخت',
+                data: [243000.0, 196344.0, 145000.0],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39, 174, 96, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'انتقال سوخت',
+                data: [35500.0, 288500.0, 103000.0],
+                borderColor: '#2980b9',
+                backgroundColor: 'rgba(41, 128, 185, 0.3)',
+                fill: true,
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'نمودار روند ماهانه مصرف، دریافت و انتقال سوخت'
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
+
 </body>
 </html>
 
