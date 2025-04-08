@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>گزارش روند سوخت رهگشایان ۱</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iran-sans-web/font.css" />
+  
+<style>
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('./fonts/Qs_Iranyekan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'IRANYekan', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  line-height: 1.8;
+}
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+.logo {
+  max-width: 120px;
+  display: block;
+  margin: 40px auto 10px auto;
+}
+h1 {
+  color: #007bff;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 2rem;
+}
+h2.section-title {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+  margin-top: 50px;
+  font-size: 1.5rem;
+}
+h3 {
+  color: #34495e;
+  margin-top: 30px;
+}
+p {
+  font-size: 1rem;
+  color: #444;
+}
+canvas {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100% !important;
+  max-width: 100%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 20px;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    margin-top: 60px;
+  }
+  h2.section-title {
+    font-size: 1.2rem;
+  }
+  p, table {
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<style>
+    body {
+      font-family: IRANSans, Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #c0392b;
+      text-align: center;
+      margin-top: 100px;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+    h3 {
+      color: #34495e;
+      margin-top: 30px;
+    }
+    p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 2;
+    }
+    canvas {
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100% !important;
+      max-width: 100%;
+    }
+    .logo {
+      max-width: 120px;
+      display: block;
+      margin: 40px auto 10px auto;
+    }
+    .top-left-date {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-left-date">1403/01/21 - 2025-04-09</div>
+  <img src="data:image/png;base64,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" class="logo" />
+  <div class="container">
+    <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
+  </div>
+
+  <div class='container'><h2>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
+        <section>
+            <h3>دی</h3>
+            <p>در ماه <strong>دی</strong>، میزان <span style='color:#2980b9;'>دریافت</span> سوخت <strong>243000 لیتر</strong>، 
+            <span style='color:#c0392b;'>انتقال</span> به سایر بخش‌ها <strong>35500 لیتر</strong> و 
+            <span style='color:#f39c12;'>مصرف</span> <strong>65846 لیتر</strong> ثبت شده است.</p>
+            <canvas id="chart_دی"></canvas>
+        </section>
+        
+        <section>
+            <h3>بهمن</h3>
+            <p>در ماه <strong>بهمن</strong>، میزان <span style='color:#2980b9;'>دریافت</span> سوخت <strong>196344 لیتر</strong>، 
+            <span style='color:#c0392b;'>انتقال</span> به سایر بخش‌ها <strong>288500 لیتر</strong> و 
+            <span style='color:#f39c12;'>مصرف</span> <strong>82815 لیتر</strong> ثبت شده است.</p>
+            <canvas id="chart_بهمن"></canvas>
+        </section>
+        
+        <section>
+            <h3>اسفند</h3>
+            <p>در ماه <strong>اسفند</strong>، میزان <span style='color:#2980b9;'>دریافت</span> سوخت <strong>145000 لیتر</strong>، 
+            <span style='color:#c0392b;'>انتقال</span> به سایر بخش‌ها <strong>103000 لیتر</strong> و 
+            <span style='color:#f39c12;'>مصرف</span> <strong>55560 لیتر</strong> ثبت شده است.</p>
+            <canvas id="chart_اسفند"></canvas>
+        </section>
+        </div>
+
+  <script>
+    const chartData = {
+      labels: ['دریافت', 'انتقال', 'مصرف'],
+      datasets: {
+        'دی': [243000, 35500, 65846],
+        'بهمن': [196344, 288500, 82815],
+        'اسفند': [145000, 103000, 55560]
+      }
+    }
+
+    Object.keys(chartData.datasets).forEach(function(month) {
+      new Chart(document.getElementById("chart_" + month), {
+        type: 'bar',
+        data: {
+          labels: chartData.labels,
+          datasets: [{
+            label: 'سوخت ' + month,
+            data: chartData.datasets[month],
+            backgroundColor: ['#2980b9','#c0392b','#f39c12']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'نمودار سوخت - ' + month
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+
+<div class='container'>
+    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
+    <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
+        <tr style='background:#eee; text-align:center;'>
+            <th>نام تجهیز</th><th>ساعت کارکرد</th><th>مصرف سوخت (لیتر)</th><th>راندمان (لیتر/ساعت)</th>
+        </tr>
+
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.1</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.2</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #1</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #2</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>BOW THRUSTER 1&2</td>
+            <td>238.5</td>
+            <td>7155</td>
+            <td>30.0</td>
+        </tr>
+    </table>
+<canvas id='efficiencyChart'></canvas>
+</div>
+
+<script>
+const efficiencyChart = new Chart(document.getElementById('efficiencyChart'), {
+    type: 'bar',
+    data: {
+        labels: ['GENERATOR NO.1', 'GENERATOR NO.2', 'MAIN ENGINE #1', 'MAIN ENGINE #2', 'BOW THRUSTER 1&2'],
+        datasets: [{
+            label: 'راندمان (لیتر/ساعت)',
+            data: [18.75, 18.75, 120.0, 120.0, 30.0],
+            backgroundColor: ['#1abc9c', '#3498db', '#f39c12', '#c0392b', '#8e44ad']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'نمودار راندمان مصرف سوخت تجهیزات'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+
+<div class='container'>
+    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <canvas id='areaTrendChart'></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById('areaTrendChart'), {
+    type: 'line',
+    data: {
+        labels: ['دی', 'بهمن', 'اسفند'],
+        datasets: [
+            {
+                label: 'مصرف سوخت',
+                data: [65846.0, 82815.0, 55560.0],
+                borderColor: '#f39c12',
+                backgroundColor: 'rgba(243, 156, 18, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'دریافت سوخت',
+                data: [243000.0, 196344.0, 145000.0],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39, 174, 96, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'انتقال سوخت',
+                data: [35500.0, 288500.0, 103000.0],
+                borderColor: '#2980b9',
+                backgroundColor: 'rgba(41, 128, 185, 0.3)',
+                fill: true,
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'نمودار روند ماهانه مصرف، دریافت و انتقال سوخت'
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
+
+
+<div class='container'>
+    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
+    <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
+        <tr style='background:#eee; text-align:center;'>
+            <th>نام تجهیز</th><th>ساعت کارکرد</th><th>مصرف سوخت (لیتر)</th><th>راندمان (لیتر/ساعت)</th>
+        </tr>
+
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.1</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.2</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #1</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #2</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>BOW THRUSTER 1&2</td>
+            <td>238.5</td>
+            <td>7155</td>
+            <td>30.0</td>
+        </tr>
+    </table>
+<canvas id='efficiencyChart'></canvas>
+</div>
+<div class='container'>
+    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <canvas id='areaTrendChart'></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById('areaTrendChart'), {
+    type: 'line',
+    data: {
+        labels: ['دی', 'بهمن', 'اسفند'],
+        datasets: [
+            {
+                label: 'مصرف سوخت',
+                data: [65846.0, 82815.0, 55560.0],
+                borderColor: '#f39c12',
+                backgroundColor: 'rgba(243, 156, 18, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'دریافت سوخت',
+                data: [243000.0, 196344.0, 145000.0],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39, 174, 96, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'انتقال سوخت',
+                data: [35500.0, 288500.0, 103000.0],
+                borderColor: '#2980b9',
+                backgroundColor: 'rgba(41, 128, 185, 0.3)',
+                fill: true,
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'نمودار روند ماهانه مصرف، دریافت و انتقال سوخت'
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
+
+<div class='container'>
+  <h2 class='section-title'>جمع‌بندی و تحلیل مقایسه‌ای سه‌ماهه</h2>
+  <p>طی سه ماهه زمستان ۱۴۰۳، شناور رهگشایان ۱ نقش کلیدی در دریافت و انتقال سوخت ایفا کرده است. در دی‌ماه، با دریافت قابل‌توجهی از سوخت و مصرف متعادل، موجودی مناسبی ایجاد شد. بهمن‌ماه شاهد بیشترین حجم انتقال به دیگر شناورها بوده که نشان‌دهنده استفاده بهینه از ذخایر است. در اسفند، با کاهش دریافت، تمرکز بر مدیریت مصرف و حفظ تعادل موجودی بوده است.</p>
+  <p><strong>نتیجه‌گیری:</strong> روند کلی نشان‌دهنده عملکرد باثبات در مصرف و انتقال، همراه با مدیریت منطقی منابع است. پیشنهاد می‌شود برای فصل آینده، ذخیره‌سازی برنامه‌ریزی‌شده‌تری در ابتدای فصل انجام شود تا وابستگی به دریافت میان‌دوره‌ای کاهش یابد.</p>
+</div>
+
+</body>
+</html>
+
+</html>
