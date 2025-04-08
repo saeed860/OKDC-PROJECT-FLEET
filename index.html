@@ -6,10 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>گزارش روند سوخت رهگشایان ۱</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iran-sans-web/font.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/yekan-font@v3.0.0/dist/font-face.css" />
   <style>
+    .section-title {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 8px;
+      margin-top: 50px;
+    }
+    
     body {
-      font-family: IRANSans, Tahoma, sans-serif;
+      font-family: Yekan, IRANSans, Tahoma, sans-serif;
       margin: 0;
       padding: 0;
       background: #f8f9fa;
@@ -68,7 +75,7 @@
     <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
   </div>
 
-  <div class='container'><h2>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
+  <div class='container'><h2 class='section-title'>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
         <section>
             <h3>دی</h3>
             <p>در ماه <strong>دی</strong>، میزان <span style='color:#2980b9;'>دریافت</span> سوخت <strong>243000 لیتر</strong>، 
@@ -131,7 +138,7 @@
 
 
 <div class='container'>
-    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <h2 class='section-title'>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
     <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
     <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
         <tr style='background:#eee; text-align:center;'>
@@ -207,7 +214,7 @@ const efficiencyChart = new Chart(document.getElementById('efficiencyChart'), {
 
 
 <div class='container'>
-    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <h2 class='section-title'>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
     <canvas id='areaTrendChart'></canvas>
 </div>
 
@@ -257,6 +264,13 @@ new Chart(document.getElementById('areaTrendChart'), {
     }
 });
 </script>
+
+
+<div class='container'>
+  <h2 class='section-title'>جمع‌بندی و تحلیل مقایسه‌ای سه‌ماهه</h2>
+  <p>طی سه ماهه زمستان ۱۴۰۳، شناور رهگشایان ۱ نقش کلیدی در دریافت و انتقال سوخت ایفا کرده است. در دی‌ماه، با دریافت قابل‌توجهی از سوخت و مصرف متعادل، موجودی مناسبی ایجاد شد. بهمن‌ماه شاهد بیشترین حجم انتقال به دیگر شناورها بوده که نشان‌دهنده استفاده بهینه از ذخایر است. در اسفند، با کاهش دریافت، تمرکز بر مدیریت مصرف و حفظ تعادل موجودی بوده است.</p>
+  <p><strong>نتیجه‌گیری:</strong> روند کلی نشان‌دهنده عملکرد باثبات در مصرف و انتقال، همراه با مدیریت منطقی منابع است. پیشنهاد می‌شود برای فصل آینده، ذخیره‌سازی برنامه‌ریزی‌شده‌تری در ابتدای فصل انجام شود تا وابستگی به دریافت میان‌دوره‌ای کاهش یابد.</p>
+</div>
 
 </body>
 </html>
