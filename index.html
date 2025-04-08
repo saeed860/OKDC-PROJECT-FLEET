@@ -128,5 +128,84 @@
       });
     });
   </script>
+
+
+<div class='container'>
+    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
+    <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
+        <tr style='background:#eee; text-align:center;'>
+            <th>نام تجهیز</th><th>ساعت کارکرد</th><th>مصرف سوخت (لیتر)</th><th>راندمان (لیتر/ساعت)</th>
+        </tr>
+
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.1</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.2</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #1</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #2</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>BOW THRUSTER 1&2</td>
+            <td>238.5</td>
+            <td>7155</td>
+            <td>30.0</td>
+        </tr>
+    </table>
+<canvas id='efficiencyChart'></canvas>
+</div>
+
+<script>
+const efficiencyChart = new Chart(document.getElementById('efficiencyChart'), {
+    type: 'bar',
+    data: {
+        labels: ['GENERATOR NO.1', 'GENERATOR NO.2', 'MAIN ENGINE #1', 'MAIN ENGINE #2', 'BOW THRUSTER 1&2'],
+        datasets: [{
+            label: 'راندمان (لیتر/ساعت)',
+            data: [18.75, 18.75, 120.0, 120.0, 30.0],
+            backgroundColor: ['#1abc9c', '#3498db', '#f39c12', '#c0392b', '#8e44ad']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'نمودار راندمان مصرف سوخت تجهیزات'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
 </body>
+</html>
+
 </html>
