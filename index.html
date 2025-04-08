@@ -6,34 +6,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>گزارش روند سوخت رهگشایان ۱</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iran-sans-web/font.css" />
+  
 <style>
-@ font-face {
+@font-face {
   font-family: 'IRANYekan';
-  src: url('./fonts/Qs_Iranyekan.ttf') format ('truetype');
+  src: url('./fonts/Qs_Iranyekan.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 body {
   font-family: 'IRANYekan', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  line-height: 1.8;
 }
-.section-title {
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+.logo {
+  max-width: 120px;
+  display: block;
+  margin: 40px auto 10px auto;
+}
+h1 {
+  color: #007bff;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 2rem;
+}
+h2.section-title {
   color: #007bff;
   border-bottom: 2px solid #007bff;
   padding-bottom: 8px;
   margin-top: 50px;
+  font-size: 1.5rem;
+}
+h3 {
+  color: #34495e;
+  margin-top: 30px;
+}
+p {
+  font-size: 1rem;
+  color: #444;
+}
+canvas {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100% !important;
+  max-width: 100%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 20px;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    margin-top: 60px;
+  }
+  h2.section-title {
+    font-size: 1.2rem;
+  }
+  p, table {
+    font-size: 0.9rem;
+  }
 }
 </style>
 
 <style>
-    .section-title {
-      color: #007bff;
-      border-bottom: 2 px solid #007bff;
-      padding-bottom: 8 px;
-      margin-top: 50 px;
-    }
-    
     body {
-      font-family: Yekan, IRANSans, Tahoma, sans-serif;
+      font-family: IRANSans, Tahoma, sans-serif;
       margin: 0;
       padding: 0;
       background: #f8f9fa;
@@ -92,7 +150,7 @@ body {
     <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
   </div>
 
-  <div class='container'><h2 class='section-title'>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
+  <div class='container'><h2>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
         <section>
             <h3>دی</h3>
             <p>در ماه <strong>دی</strong>، میزان <span style='color:#2980b9;'>دریافت</span> سوخت <strong>243000 لیتر</strong>، 
@@ -155,7 +213,7 @@ body {
 
 
 <div class='container'>
-    <h2 class='section-title'>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
     <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
     <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
         <tr style='background:#eee; text-align:center;'>
@@ -231,7 +289,7 @@ const efficiencyChart = new Chart(document.getElementById('efficiencyChart'), {
 
 
 <div class='container'>
-    <h2 class='section-title'>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
     <canvas id='areaTrendChart'></canvas>
 </div>
 
@@ -282,6 +340,103 @@ new Chart(document.getElementById('areaTrendChart'), {
 });
 </script>
 
+
+<div class='container'>
+    <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+    <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور رهگشایان ۱ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
+    <table style='width:100%; border-collapse: collapse; margin-top:20px; font-size:0.95rem;'>
+        <tr style='background:#eee; text-align:center;'>
+            <th>نام تجهیز</th><th>ساعت کارکرد</th><th>مصرف سوخت (لیتر)</th><th>راندمان (لیتر/ساعت)</th>
+        </tr>
+
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.1</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>GENERATOR NO.2</td>
+            <td>120.0</td>
+            <td>2250</td>
+            <td>18.75</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #1</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>MAIN ENGINE #2</td>
+            <td>661.5</td>
+            <td>79380</td>
+            <td>120.0</td>
+        </tr>
+    
+        <tr style='text-align:center;'>
+            <td>BOW THRUSTER 1&2</td>
+            <td>238.5</td>
+            <td>7155</td>
+            <td>30.0</td>
+        </tr>
+    </table>
+<canvas id='efficiencyChart'></canvas>
+</div>
+<div class='container'>
+    <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
+    <canvas id='areaTrendChart'></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById('areaTrendChart'), {
+    type: 'line',
+    data: {
+        labels: ['دی', 'بهمن', 'اسفند'],
+        datasets: [
+            {
+                label: 'مصرف سوخت',
+                data: [65846.0, 82815.0, 55560.0],
+                borderColor: '#f39c12',
+                backgroundColor: 'rgba(243, 156, 18, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'دریافت سوخت',
+                data: [243000.0, 196344.0, 145000.0],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39, 174, 96, 0.3)',
+                fill: true,
+                tension: 0.3
+            },
+            {
+                label: 'انتقال سوخت',
+                data: [35500.0, 288500.0, 103000.0],
+                borderColor: '#2980b9',
+                backgroundColor: 'rgba(41, 128, 185, 0.3)',
+                fill: true,
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'نمودار روند ماهانه مصرف، دریافت و انتقال سوخت'
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
 
 <div class='container'>
   <h2 class='section-title'>جمع‌بندی و تحلیل مقایسه‌ای سه‌ماهه</h2>
