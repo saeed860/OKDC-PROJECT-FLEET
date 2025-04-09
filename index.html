@@ -114,6 +114,7 @@
 </head>
 
 <body>
+  <!-- بخش تب‌ها -->
   <div class="tabs">
     <div class="tab active" onclick="showTab('marsea2')">مارسی ۲</div>
     <div class="tab" onclick="showTab('rahgoshayan1')">رهگشایان ۱</div>
@@ -130,7 +131,7 @@
     <div class="container">
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت - مارسی ۲ (زمستان ۱۴۰۳)</h1>
 
-      <!-- تحلیل و گزارش مشابه رهگشایان -->
+      <!-- تحلیل و گزارش -->
       <h2>تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت</h2>
       <p>
         در سه ماهه زمستان ۱۴۰۳ (دی، بهمن و اسفند)، شناور مارسی ۲ عملکردی در زمینه دریافت، انتقال و مصرف سوخت داشته است. در نمودارهای زیر، وضعیت هر ماه به تفکیک ارائه شده است. 
@@ -171,9 +172,7 @@
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC" 
            class="logo" alt="Company Logo" />
     </div>
-    <!-- محتوای فایل رهگشایان 1 (index.html) با حذف تکرار نمودار خطی نهایی -->
     <div class="container">
-
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
 
       <!-- تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت -->
@@ -248,13 +247,13 @@
     </div>
   </div>
 
-  <!-- متغیرهای تنظیمات گراف -->
+  <!-- اسکریپت تعریف داده‌های گراف‌ها -->
   <script>
     /* داده‌های مارسی ۲: سه نمودار میله‌ای (برای دی، بهمن، اسفند) + یک نمودار خطی */
     const marsea2BarData = {
-      دی: [262.4, 30.4, 72.425],
-      بهمن: [145.0, 139.5, 49.6],
-      اسفند: [513.15, 525.0, 74.4]
+      "دی": [262.4, 30.4, 72.425],
+      "بهمن": [145.0, 139.5, 49.6],
+      "اسفند": [513.15, 525.0, 74.4]
     };
     const marsea2LineData = {
       labels: ["دی", "بهمن", "اسفند"],
@@ -286,11 +285,11 @@
       ]
     };
 
-    /* داده‌های رهگشایان ۱ (برگرفته از index.html اصلی) */
+    /* داده‌های رهگشایان ۱ */
     const rahgoshayanBarData = {
-      دی: [243000, 35500, 65846],
-      بهمن: [196344, 288500, 82815],
-      اسفند: [145000, 103000, 55560]
+      "دی": [243000, 35500, 65846],
+      "بهمن": [196344, 288500, 82815],
+      "اسفند": [145000, 103000, 55560]
     };
     const rahgoshayanLineData = {
       labels: ["دی", "بهمن", "اسفند"],
@@ -394,7 +393,7 @@
         }
       },
 
-      /* گراف‌های رهگشایان ۱ */
+      /* گراف‌های میله‌ای رهگشایان ۱ */
       "chart_دی_رهگشایان": {
         type: "bar",
         data: {
@@ -490,17 +489,16 @@
     };
   </script>
 
-  <!-- اسکریپت بارگذاری و Switch تب‌ها -->
+  <!-- اسکریپت نمایش تب‌ها و نمودارها -->
   <script>
   function showTab(id) {
     document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.querySelector('.tab[onclick*="' + id + '"]').classList.add('active');
-    // تاخیر کوتاه برای resize نمودارها
+    // تاخیر کوتاه برای رندر نمودارها
     setTimeout(() => {
       document.querySelectorAll("#" + id + " canvas").forEach(c => {
-        // اگر نمودار ساخته نشده بود بساز
         if (!c.dataset.fixed) {
           const ctx = c.getContext("2d");
           const chart = new Chart(ctx, window.chartConfigs[c.id]);
@@ -510,7 +508,7 @@
     }, 300);
   }
 
-  // هنگام بارگذاری صفحه، تمامی نمودارها را یک‌بار رندر می‌کنیم
+  // زمان بارگذاری اولیه
   window.onload = () => {
     document.querySelectorAll("canvas").forEach(c => {
       if (!c.dataset.fixed) {
