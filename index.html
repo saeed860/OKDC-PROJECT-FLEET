@@ -7,7 +7,7 @@
   <!-- کتابخانه Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- استفاده از فونت ایران سنس از CDN -->
+  <!-- استفاده از فونت ایران سنس از CDN جدید -->
   <link rel="stylesheet" href="https://cdn.sqp.ir/Plugins/fonts/IRANSansWeb/IRANSansWeb.css" />
 
   <style>
@@ -23,26 +23,17 @@
     /* نوار تب‌ها */
     .tabs {
       display: flex;
-      align-items: center;
+      justify-content: center;
       background: #007bff;
       flex-wrap: wrap;
-      position: relative;
-      padding: 10px;
+      padding: 10px 0;
     }
-
-    /* تاریخ در گوشه‌ی بالا چپ تب‌ها */
-    .tabs .date-text {
-      margin-right: auto;
-      color: #ffffff;
-      font-size: 0.9rem;
-    }
-
     .tab {
       padding: 10px 20px;
       color: white;
       cursor: pointer;
       font-weight: bold;
-      margin-left: 10px;
+      margin: 0 5px;
     }
     .tab:hover, .tab.active {
       background: #0056b3;
@@ -55,6 +46,13 @@
       display: block;
     }
 
+    /* تاریخ در ابتدای تب‌ها (قبل از محتوای اصلی) */
+    .date-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
     /* محتوای اصلی هر تب */
     .container {
       max-width: 960px;
@@ -64,6 +62,7 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     h1 {
       text-align: center;
       color: #007bff;
@@ -104,28 +103,39 @@
       border: 1px solid #ccc;
       text-align: center;
     }
-    /* لوگو در بالای هر تب */
+    /* لوگو در ابتدای هر تب */
     .logo {
       display: block;
-      margin: 0 0 10px 0;
+      margin: 0 auto 10px auto;
       height: 40px;
     }
 
     /* واکنش‌گرا */
     @media (max-width: 768px) {
-      .tab { padding: 6px 12px; font-size: 0.9rem; margin-left: 5px; }
-      .container { padding: 15px; font-size: 0.95rem; }
-      h1 { font-size: 1.2rem; margin-top: 20px; }
-      h2 { font-size: 1rem; margin-top: 30px; }
+      .tab {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin: 2px;
+      }
+      .container {
+        padding: 15px;
+        font-size: 0.95rem;
+      }
+      h1 {
+        font-size: 1.2rem;
+        margin-top: 20px;
+      }
+      h2 {
+        font-size: 1rem;
+        margin-top: 30px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- نوار تب‌ها (شامل تاریخ) -->
+  <!-- نوار تب‌ها -->
   <div class="tabs">
-    <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
     <div class="tab active" onclick="showTab('marsea2')">مارسی ۲</div>
     <div class="tab" onclick="showTab('rahgoshayan1')">رهگشایان ۱</div>
   </div>
@@ -133,10 +143,15 @@
   <!-- تب مارسی 2 -->
   <div id="marsea2" class="tab-content active">
     <div class="container">
-      <!-- لوگو بالای تب -->
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
-           alt="Company Logo"
-           class="logo" />
+      <!-- تاریخ در ابتدای تب مارسی2 -->
+      <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
+
+      <!-- لوگو بالای تب مارسی2 -->
+      <img 
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
+        alt="Company Logo"
+        class="logo"
+      />
 
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت - مارسی ۲ (زمستان ۱۴۰۳)</h1>
 
@@ -164,7 +179,7 @@
       <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
       <canvas id="lineChartMarsea2"></canvas>
 
-      <!-- راندمان مصرف سوخت و کارکرد تجهیزات - مارسی 2 -->
+      <!-- راندمان مصرف سوخت و کارکرد تجهیزات مارسی 2 -->
       <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
       <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور مارسی ۲ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
       <table>
@@ -216,10 +231,15 @@
   <!-- تب رهگشایان 1 -->
   <div id="rahgoshayan1" class="tab-content">
     <div class="container">
-      <!-- لوگو بالای تب -->
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
-           alt="Company Logo"
-           class="logo" />
+      <!-- تاریخ در ابتدای تب رهگشایان1 -->
+      <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
+
+      <!-- لوگو بالای تب رهگشایان1 -->
+      <img 
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
+        alt="Company Logo"
+        class="logo"
+      />
 
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
 
@@ -295,9 +315,9 @@
     </div>
   </div>
 
-  <!-- تنظیم داده‌های گراف‌ها -->
+  <!-- داده‌های گراف‌ها -->
   <script>
-    /* داده‌های مارسی ۲: سه نمودار میله‌ای (برای دی، بهمن، اسفند) + نمودار خطی + راندمان */
+    /* داده‌های مارسی ۲ */
     const marsea2BarData = {
       "دی": [262.4, 30.4, 72.425],
       "بهمن": [145.0, 139.5, 49.6],
@@ -310,7 +330,7 @@
           label: "مصرف سوخت",
           data: [72.425, 49.6, 74.4],
           borderColor: "#f39c12",
-          backgroundColor: "rgba(243,156,18,0.2)",
+          backgroundColor: "rgba(243, 156, 18, 0.2)",
           fill: true,
           tension: 0.3
         },
@@ -318,7 +338,7 @@
           label: "دریافت سوخت",
           data: [262.4, 145.0, 513.15],
           borderColor: "#27ae60",
-          backgroundColor: "rgba(39,174,96,0.2)",
+          backgroundColor: "rgba(39, 174, 96, 0.2)",
           fill: true,
           tension: 0.3
         },
@@ -326,7 +346,7 @@
           label: "انتقال سوخت",
           data: [30.4, 139.5, 525.0],
           borderColor: "#2980b9",
-          backgroundColor: "rgba(41,128,185,0.2)",
+          backgroundColor: "rgba(41, 128, 185, 0.2)",
           fill: true,
           tension: 0.3
         }
@@ -336,7 +356,7 @@
       labels: ["GENERATOR NO.1", "GENERATOR NO.2", "MAIN ENGINE #1", "MAIN ENGINE #2", "BOW THRUSTER 1&2"],
       datasets: [{
         label: "راندمان (لیتر/ساعت)",
-        data: [20, 20, 120, 120, 30], // اعداد نمونه
+        data: [20, 20, 120, 120, 30], 
         backgroundColor: ["#1abc9c", "#3498db", "#f39c12", "#c0392b", "#8e44ad"]
       }]
     };
@@ -354,7 +374,7 @@
           label: "مصرف سوخت",
           data: [65846, 82815, 55560],
           borderColor: "#f39c12",
-          backgroundColor: "rgba(243,156,18,0.2)",
+          backgroundColor: "rgba(243, 156, 18, 0.2)",
           fill: true,
           tension: 0.3
         },
@@ -362,7 +382,7 @@
           label: "دریافت سوخت",
           data: [243000, 196344, 145000],
           borderColor: "#27ae60",
-          backgroundColor: "rgba(39,174,96,0.2)",
+          backgroundColor: "rgba(39, 174, 96, 0.2)",
           fill: true,
           tension: 0.3
         },
@@ -370,16 +390,16 @@
           label: "انتقال سوخت",
           data: [35500, 288500, 103000],
           borderColor: "#2980b9",
-          backgroundColor: "rgba(41,128,185,0.2)",
+          backgroundColor: "rgba(41, 128, 185, 0.2)",
           fill: true,
           tension: 0.3
         }
       ]
     };
 
-    /* شیء مشترک برای همه گراف‌ها در هر تب */
+    /* پیکربندی نمودارها */
     window.chartConfigs = {
-      /* گراف‌های میله‌ای مارسی ۲ */
+      /* مارسی ۲: 3 نمودار میله‌ای و 1 خطی و 1 راندمان */
       "chart_دی": {
         type: "bar",
         data: {
@@ -434,8 +454,6 @@
           }
         }
       },
-
-      /* نمودار خطی مارسی ۲ */
       "lineChartMarsea2": {
         type: "line",
         data: marsea2LineData,
@@ -450,8 +468,6 @@
           }
         }
       },
-
-      /* نمودار راندمان مارسی ۲ */
       "efficiencyChartMarsea2": {
         type: "bar",
         data: marsea2EfficiencyData,
@@ -470,7 +486,7 @@
         }
       },
 
-      /* گراف‌های میله‌ای رهگشایان ۱ */
+      /* رهگشایان 1: 3 نمودار میله‌ای، 1 خطی و 1 راندمان */
       "chart_دی_رهگشایان": {
         type: "bar",
         data: {
@@ -525,8 +541,6 @@
           }
         }
       },
-
-      /* نمودار خطی رهگشایان ۱ */
       "areaTrendChartRahgoshayan": {
         type: "line",
         data: rahgoshayanLineData,
@@ -541,8 +555,6 @@
           }
         }
       },
-
-      /* نمودار راندمان رهگشایان ۱ */
       "efficiencyChartRahgoshayan": {
         type: "bar",
         data: {
@@ -570,37 +582,35 @@
     };
   </script>
 
-  <!-- اسکریپت نمایش تب‌ها و نمودارها -->
+  <!-- اسکریپت سوییچ تب‌ها و نمایش نمودار -->
   <script>
-  function showTab(id) {
-    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelector('.tab[onclick*="' + id + '"]').classList.add('active');
-    
-    // تاخیر کوتاه برای رندر نمودارها بعد از نمایش تب
-    setTimeout(() => {
-      document.querySelectorAll("#" + id + " canvas").forEach(c => {
-        // اگر نمودار جدید ساخته نشده، بساز
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelector('.tab[onclick*="' + id + '"]').classList.add('active');
+      // تاخیر برای رندر نمودار پس از نمایش تب
+      setTimeout(() => {
+        document.querySelectorAll("#" + id + " canvas").forEach(c => {
+          if (!c.dataset.fixed) {
+            const ctx = c.getContext("2d");
+            new Chart(ctx, window.chartConfigs[c.id]);
+            c.dataset.fixed = "true";
+          }
+        });
+      }, 300);
+    }
+
+    // رندر اولیه نمودارها هنگام بارگذاری صفحه
+    window.onload = () => {
+      document.querySelectorAll("canvas").forEach(c => {
         if (!c.dataset.fixed) {
           const ctx = c.getContext("2d");
           new Chart(ctx, window.chartConfigs[c.id]);
           c.dataset.fixed = "true";
         }
       });
-    }, 300);
-  }
-
-  // بارگذاری اولیه (جهت ایجاد نمودارها به صورت پیش‌فرض)
-  window.onload = () => {
-    document.querySelectorAll("canvas").forEach(c => {
-      if (!c.dataset.fixed) {
-        const ctx = c.getContext("2d");
-        new Chart(ctx, window.chartConfigs[c.id]);
-        c.dataset.fixed = "true";
-      }
-    });
-  };
+    };
   </script>
 </body>
 </html>
