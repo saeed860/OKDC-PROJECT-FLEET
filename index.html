@@ -3,33 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <title>داشبورد سوخت - زمستان ۱۴۰۳</title>
+
   <!-- کتابخانه Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- استفاده از فونت ایران سنس از CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iran-sans-web/font.css" />
+
   <style>
-    /* فونت ایران‌یکان (یا هر فونت فارسی دلخواه) */
-    @font-face {
-      font-family: 'IRANYekan';
-      src: url('./fonts/Qs_Iranyekan.ttf') format('truetype');
-    }
     body {
-      font-family: 'IRANYekan', sans-serif;
+      font-family: IRANSansWeb, sans-serif;
       background: #f8f9fa;
       margin: 0;
       padding: 0;
       line-height: 1.8;
       color: #444;
     }
+
+    /* نوار تب‌ها */
     .tabs {
       display: flex;
-      justify-content: center;
+      align-items: center;
       background: #007bff;
       flex-wrap: wrap;
+      position: relative;
+      padding: 10px;
     }
+
+    /* تاریخ در گوشه‌ی بالا چپ تب‌ها */
+    .tabs .date-text {
+      margin-right: auto;
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
     .tab {
-      padding: 15px 30px;
+      padding: 10px 20px;
       color: white;
       cursor: pointer;
       font-weight: bold;
+      margin-left: 10px;
     }
     .tab:hover, .tab.active {
       background: #0056b3;
@@ -41,6 +54,8 @@
     .tab-content.active {
       display: block;
     }
+
+    /* محتوای اصلی هر تب */
     .container {
       max-width: 960px;
       margin: auto;
@@ -52,7 +67,7 @@
     h1 {
       text-align: center;
       color: #007bff;
-      margin-top: 40px;
+      margin-top: 20px;
       margin-bottom: 10px;
     }
     h2 {
@@ -89,46 +104,40 @@
       border: 1px solid #ccc;
       text-align: center;
     }
-    /* استایل لوگو و تاریخ */
-    .top-left-date {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 10px 20px;
-      background: #f8f9fa;
-    }
-    .date-text {
-      font-size: 0.9rem; 
-      color: #666;
-    }
+    /* لوگو در بالای هر تب */
     .logo {
-      height: 36px; 
+      display: block;
+      margin: 0 0 10px 0;
+      height: 40px;
     }
+
+    /* واکنش‌گرا */
     @media (max-width: 768px) {
-      .tab { padding: 10px; font-size: 0.9rem; }
+      .tab { padding: 6px 12px; font-size: 0.9rem; margin-left: 5px; }
       .container { padding: 15px; font-size: 0.95rem; }
-      h1 { font-size: 1.2rem; margin-top: 30px; }
+      h1 { font-size: 1.2rem; margin-top: 20px; }
       h2 { font-size: 1rem; margin-top: 30px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- بخش تب‌ها -->
+
+  <!-- نوار تب‌ها (شامل تاریخ) -->
   <div class="tabs">
+    <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
     <div class="tab active" onclick="showTab('marsea2')">مارسی ۲</div>
     <div class="tab" onclick="showTab('rahgoshayan1')">رهگشایان ۱</div>
   </div>
 
-  <!-- بخش مارسی 2 -->
+  <!-- تب مارسی 2 -->
   <div id="marsea2" class="tab-content active">
-    <!-- لوگو و تاریخ -->
-    <div class="top-left-date">
-      <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC" 
-           class="logo" alt="Company Logo" />
-    </div>
     <div class="container">
+      <!-- لوگو بالای تب -->
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
+           alt="Company Logo"
+           class="logo" />
+
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت - مارسی ۲ (زمستان ۱۴۰۳)</h1>
 
       <!-- تحلیل و گزارش -->
@@ -155,6 +164,46 @@
       <h2>نمودار روند ماهانه مصرف، دریافت و انتقال سوخت</h2>
       <canvas id="lineChartMarsea2"></canvas>
 
+      <!-- راندمان مصرف سوخت و کارکرد تجهیزات - مارسی 2 -->
+      <h2>راندمان مصرف سوخت و کارکرد تجهیزات</h2>
+      <p>در این بخش، ساعات کارکرد و مصرف سوخت تجهیزات مختلف شناور مارسی ۲ بررسی شده است. راندمان هر تجهیز بر اساس میزان مصرف سوخت به ازای هر ساعت فعالیت محاسبه شده است.</p>
+      <table>
+          <tr style='background:#eee; text-align:center;'>
+              <th>نام تجهیز</th><th>ساعت کارکرد</th><th>مصرف سوخت (لیتر)</th><th>راندمان (لیتر/ساعت)</th>
+          </tr>
+          <tr>
+              <td>GENERATOR NO.1</td>
+              <td>100</td>
+              <td>2000</td>
+              <td>20.0</td>
+          </tr>
+          <tr>
+              <td>GENERATOR NO.2</td>
+              <td>100</td>
+              <td>2000</td>
+              <td>20.0</td>
+          </tr>
+          <tr>
+              <td>MAIN ENGINE #1</td>
+              <td>600</td>
+              <td>72000</td>
+              <td>120.0</td>
+          </tr>
+          <tr>
+              <td>MAIN ENGINE #2</td>
+              <td>600</td>
+              <td>72000</td>
+              <td>120.0</td>
+          </tr>
+          <tr>
+              <td>BOW THRUSTER 1&amp;2</td>
+              <td>240</td>
+              <td>7200</td>
+              <td>30.0</td>
+          </tr>
+      </table>
+      <canvas id="efficiencyChartMarsea2"></canvas>
+
       <!-- نتیجه گیری -->
       <h2>جمع‌بندی و نتیجه‌گیری</h2>
       <p>
@@ -164,15 +213,14 @@
     </div>
   </div>
 
-  <!-- بخش رهگشایان 1 -->
+  <!-- تب رهگشایان 1 -->
   <div id="rahgoshayan1" class="tab-content">
-    <!-- لوگو و تاریخ -->
-    <div class="top-left-date">
-      <div class="date-text">۱۴۰۱/۰۱/۲۰ - 2022-04-09</div>
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC" 
-           class="logo" alt="Company Logo" />
-    </div>
     <div class="container">
+      <!-- لوگو بالای تب -->
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARtJREFUWEdjZKAQMFBQUH///5f+gR3F/9EwvxkYGBj+T548ePKBdHgYmBhZWVn5jwEDEwMQExNDI/8UFBSc/Pz9gYoAkZGBgYGLj/0cHBwdHh4foH5T1DYwMjKyY2NjUEBgAAIMTE5O/vz+UVKAgZqD+AgMDY/EGxGRgYWFoZsPFUAAAwMDIyMrJ+/frFgkGkARqMGG0AArsYA0XuhDw6AAAAAElFTkSuQmCC"
+           alt="Company Logo"
+           class="logo" />
+
       <h1>گزارش روند دریافت، انتقال و مصرف سوخت شناور رهگشایان ۱ - زمستان ۱۴۰۳</h1>
 
       <!-- تحلیل و گزارش روند دریافت، انتقال و مصرف سوخت -->
@@ -247,9 +295,9 @@
     </div>
   </div>
 
-  <!-- اسکریپت تعریف داده‌های گراف‌ها -->
+  <!-- تنظیم داده‌های گراف‌ها -->
   <script>
-    /* داده‌های مارسی ۲: سه نمودار میله‌ای (برای دی، بهمن، اسفند) + یک نمودار خطی */
+    /* داده‌های مارسی ۲: سه نمودار میله‌ای (برای دی، بهمن، اسفند) + نمودار خطی + راندمان */
     const marsea2BarData = {
       "دی": [262.4, 30.4, 72.425],
       "بهمن": [145.0, 139.5, 49.6],
@@ -262,7 +310,7 @@
           label: "مصرف سوخت",
           data: [72.425, 49.6, 74.4],
           borderColor: "#f39c12",
-          backgroundColor: "rgba(243, 156, 18, 0.2)",
+          backgroundColor: "rgba(243,156,18,0.2)",
           fill: true,
           tension: 0.3
         },
@@ -270,7 +318,7 @@
           label: "دریافت سوخت",
           data: [262.4, 145.0, 513.15],
           borderColor: "#27ae60",
-          backgroundColor: "rgba(39, 174, 96, 0.2)",
+          backgroundColor: "rgba(39,174,96,0.2)",
           fill: true,
           tension: 0.3
         },
@@ -278,11 +326,19 @@
           label: "انتقال سوخت",
           data: [30.4, 139.5, 525.0],
           borderColor: "#2980b9",
-          backgroundColor: "rgba(41, 128, 185, 0.2)",
+          backgroundColor: "rgba(41,128,185,0.2)",
           fill: true,
           tension: 0.3
         }
       ]
+    };
+    const marsea2EfficiencyData = {
+      labels: ["GENERATOR NO.1", "GENERATOR NO.2", "MAIN ENGINE #1", "MAIN ENGINE #2", "BOW THRUSTER 1&2"],
+      datasets: [{
+        label: "راندمان (لیتر/ساعت)",
+        data: [20, 20, 120, 120, 30], // اعداد نمونه
+        backgroundColor: ["#1abc9c", "#3498db", "#f39c12", "#c0392b", "#8e44ad"]
+      }]
     };
 
     /* داده‌های رهگشایان ۱ */
@@ -298,7 +354,7 @@
           label: "مصرف سوخت",
           data: [65846, 82815, 55560],
           borderColor: "#f39c12",
-          backgroundColor: "rgba(243, 156, 18, 0.2)",
+          backgroundColor: "rgba(243,156,18,0.2)",
           fill: true,
           tension: 0.3
         },
@@ -306,7 +362,7 @@
           label: "دریافت سوخت",
           data: [243000, 196344, 145000],
           borderColor: "#27ae60",
-          backgroundColor: "rgba(39, 174, 96, 0.2)",
+          backgroundColor: "rgba(39,174,96,0.2)",
           fill: true,
           tension: 0.3
         },
@@ -314,14 +370,14 @@
           label: "انتقال سوخت",
           data: [35500, 288500, 103000],
           borderColor: "#2980b9",
-          backgroundColor: "rgba(41, 128, 185, 0.2)",
+          backgroundColor: "rgba(41,128,185,0.2)",
           fill: true,
           tension: 0.3
         }
       ]
     };
 
-    /* شیء مشترک برای همه گراف‌ها - window.chartConfigs */
+    /* شیء مشترک برای همه گراف‌ها در هر تب */
     window.chartConfigs = {
       /* گراف‌های میله‌ای مارسی ۲ */
       "chart_دی": {
@@ -378,6 +434,8 @@
           }
         }
       },
+
+      /* نمودار خطی مارسی ۲ */
       "lineChartMarsea2": {
         type: "line",
         data: marsea2LineData,
@@ -389,6 +447,25 @@
               display: true,
               text: "نمودار روند سه ماهه (مارسی ۲)"
             }
+          }
+        }
+      },
+
+      /* نمودار راندمان مارسی ۲ */
+      "efficiencyChartMarsea2": {
+        type: "bar",
+        data: marsea2EfficiencyData,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: "نمودار راندمان مصرف سوخت (مارسی ۲)"
+            }
+          },
+          scales: {
+            y: { beginAtZero: true }
           }
         }
       },
@@ -448,6 +525,8 @@
           }
         }
       },
+
+      /* نمودار خطی رهگشایان ۱ */
       "areaTrendChartRahgoshayan": {
         type: "line",
         data: rahgoshayanLineData,
@@ -462,6 +541,8 @@
           }
         }
       },
+
+      /* نمودار راندمان رهگشایان ۱ */
       "efficiencyChartRahgoshayan": {
         type: "bar",
         data: {
@@ -496,24 +577,26 @@
     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.querySelector('.tab[onclick*="' + id + '"]').classList.add('active');
-    // تاخیر کوتاه برای رندر نمودارها
+    
+    // تاخیر کوتاه برای رندر نمودارها بعد از نمایش تب
     setTimeout(() => {
       document.querySelectorAll("#" + id + " canvas").forEach(c => {
+        // اگر نمودار جدید ساخته نشده، بساز
         if (!c.dataset.fixed) {
           const ctx = c.getContext("2d");
-          const chart = new Chart(ctx, window.chartConfigs[c.id]);
+          new Chart(ctx, window.chartConfigs[c.id]);
           c.dataset.fixed = "true";
         }
       });
     }, 300);
   }
 
-  // زمان بارگذاری اولیه
+  // بارگذاری اولیه (جهت ایجاد نمودارها به صورت پیش‌فرض)
   window.onload = () => {
     document.querySelectorAll("canvas").forEach(c => {
       if (!c.dataset.fixed) {
         const ctx = c.getContext("2d");
-        const chart = new Chart(ctx, window.chartConfigs[c.id]);
+        new Chart(ctx, window.chartConfigs[c.id]);
         c.dataset.fixed = "true";
       }
     });
